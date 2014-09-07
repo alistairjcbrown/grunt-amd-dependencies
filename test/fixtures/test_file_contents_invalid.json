@@ -1,0 +1,10 @@
+[
+    {
+        "path": "path/to/invalid_one.js",
+        "contents": "console.log('Hello World);"
+    },
+    {
+        "path": "path/to/two.js",
+        "contents": "console.log('Hello World');"
+    }
+]

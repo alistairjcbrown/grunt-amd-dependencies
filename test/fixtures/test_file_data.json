@@ -1,0 +1,10 @@
+[
+    {
+        "path": "test/fixtures/test_file_1.js",
+        "contents": "console.log(\"test JS file number 1\");"
+    },
+    {
+        "path": "test/fixtures/test_file_2.js",
+        "contents": "console.log(\"test JS file number 2\");"
+    }
+]

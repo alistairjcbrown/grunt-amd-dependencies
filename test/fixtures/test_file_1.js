@@ -1,0 +1,1 @@
+console.log("test JS file number 1");

@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
+"use strict";
 
 module.exports = function(grunt) {
 
@@ -14,60 +14,53 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
+        "Gruntfile.js",
+        "tasks/*.js",
+        "<%= nodeunit.tests %>"
       ],
       options: {
-        jshintrc: '.jshintrc'
+        jshintrc: ".jshintrc"
       }
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
     },
 
     // Configuration to be run (and then tested).
     amd_dependencies: {
-      default_options: {
+      all: {
         options: {
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        src: []
       }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js']
+      tests: ["test/*_test.js"]
+    },
+
+    keybase_dir: {
+      verify: {},
+      sign: {}
     }
 
   });
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+  // Actually load this plugin"s task(s).
+  grunt.loadTasks("tasks");
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-contrib-nodeunit");
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'amd_dependencies', 'nodeunit']);
+  // Code signing and verification tasks
+  grunt.registerTask("sign",   [ "keybase_dir:sign" ]);
+  grunt.registerTask("verify", [ "keybase_dir:verify" ]);
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  // Whenever the "test" task is run, run this plugin"s task, then test the result.
+  grunt.registerTask("test", [ "jshint", "nodeunit" ]);
+  grunt.registerTask("go",   [ "sign", "test", "verify" ]);
+
+  // By default, sign, test and verify.
+  grunt.registerTask("default", [ "go" ]);
+
 
 };

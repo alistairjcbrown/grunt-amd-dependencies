@@ -1,0 +1,16 @@
+[
+    {
+        "moduleId": "module1",
+        "paths": [ "p1" ],
+        "dependencies": [ "a" ],
+        "unusedPaths": [],
+        "unusedDependencies": []
+    },
+    {
+        "moduleId": "module2",
+        "paths": [ "p1", "p2" ],
+        "dependencies": [ "a", "b" ],
+        "unusedPaths": [],
+        "unusedDependencies": []
+    }
+]
